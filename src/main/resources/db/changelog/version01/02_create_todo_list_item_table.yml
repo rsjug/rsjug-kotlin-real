@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: brunosoares
+      changes:
+        - createSequence:
+            schemaName: public
+            sequenceName: todo_list_item_id
+            incrementBy: 1
+            startValue: 1
+            cache: 1
+            cycle: true
+        - createTable:
+            schemaName: public
+            tableName: todo_list_item
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  defaultValueSequenceNext: todo_list_item_id
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(100)
+              - column:
+                  name: id_todo_list
+                  type: bigint
+                  constraints:
+                    foreignKeyName: todo_list_item_fk_todo_list
+                    references: todo_list(id)

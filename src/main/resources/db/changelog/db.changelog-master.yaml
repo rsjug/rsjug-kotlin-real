@@ -1,0 +1,5 @@
+# http://www.liquibase.org/documentation/changes/
+databaseChangeLog:
+  - includeAll:
+      relativeToChangelogFile: true
+      path: version01
